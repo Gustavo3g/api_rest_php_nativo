@@ -1,0 +1,8 @@
+#Indicando que quer usar a sobrescrita de url
+RewriteEngine On
+# O que for diferente de file e diretorio.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+#Todas as requisições que não existem um file e um diretorio redireciona para o index.php
+RewriteRule ^(.*)$ index.php [NC,L]
+
