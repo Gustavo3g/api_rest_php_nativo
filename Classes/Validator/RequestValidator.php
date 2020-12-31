@@ -2,19 +2,22 @@
 
 namespace Validator;
 
+use Repository\TokensAutorizadosRepository;
 use Util\ConstantesGenericasUtil;
 use Util\jsonUtil;
 
 class RequestValidator
 {
     private $request;
-    private $dadosRequest;
+    private array $dadosRequest;
+    private object $TokensAutorizadosRepository;
 
     const GET = 'GET';
     const DELETE = 'DELETE';
     public function __construct($request)
     {
         $this->request = $request;
+        $this->TokensAutorizadosRepository = new TokensAutorizadosRepository();
     }
 
     /**
@@ -25,7 +28,6 @@ class RequestValidator
         $this->request['metodo'] = 'POST';
         $retorno = utf8_encode(ConstantesGenericasUtil::MSG_ERRO_TIPO_ROTA);
         if(in_array($this->request['metodo'],ConstantesGenericasUtil::TIPO_REQUEST, true)){
-            echo 'test';
             $retorno = $this->direcionarRequest();
         }
         return $retorno;
@@ -36,6 +38,9 @@ class RequestValidator
         if($this->request['metodo'] !== self::GET && $this->request !== self::DELETE ){
             $this->dadosRequest = JsonUtil::tratarCorpoRequisicaoJson();
         }
+
+
+
     }
 
 }

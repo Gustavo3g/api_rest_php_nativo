@@ -9,7 +9,7 @@ error_reporting(E_ERROR);
 
 define(HOST, 'localhost');
 define(BANCO, 'api');
-define(USER, 'root');
+define(USUARIO, 'root');
 define(SENHA, 'root');
 
 define(DS, DIRECTORY_SEPARATOR);

@@ -6,7 +6,6 @@ use Validator\RequestValidator;
 include 'bootstrap.php';
 
 
-
 try {
     $RequestValidator = new RequestValidator(RotasUtil::getRotas());
     $RequestValidator->processarRequest();
