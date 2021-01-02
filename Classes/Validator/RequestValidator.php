@@ -25,7 +25,6 @@ class RequestValidator
      */
     public function processarRequest()
     {
-        $this->request['metodo'] = 'POST';
         $retorno = utf8_encode(ConstantesGenericasUtil::MSG_ERRO_TIPO_ROTA);
         if(in_array($this->request['metodo'],ConstantesGenericasUtil::TIPO_REQUEST, true)){
             $retorno = $this->direcionarRequest();
@@ -38,8 +37,7 @@ class RequestValidator
         if($this->request['metodo'] !== self::GET && $this->request !== self::DELETE ){
             $this->dadosRequest = JsonUtil::tratarCorpoRequisicaoJson();
         }
-
-
+        $this->TokensAutorizadosRepository->validarToken(getallheaders()['Authorization']);
 
     }
 
