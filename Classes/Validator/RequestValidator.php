@@ -2,6 +2,7 @@
 
 namespace Validator;
 
+use http\Exception\InvalidArgumentException;
 use Repository\TokensAutorizadosRepository;
 use Service\UsuariosService;
 use Util\ConstantesGenericasUtil;
@@ -54,8 +55,11 @@ class RequestValidator
                 case self::USUARIOS:
                     $UsuariosService = new UsuariosService($this->request);
                     $retorno = $UsuariosService->validarGet();
+                    break;
+                default:
+                    throw new InvalidArgumentException(ConstantesGenericasUtil::MSG_ERRO_RECURSO_INEXISTENTE);
             }
-
+            return $retorno;
         }
     }
 
